@@ -5,5 +5,6 @@ const port = Number(process.env.PORT) || 3000;
 console.log(`Server running at http://localhost:${port}/`);
 serve({
   fetch: app.fetch,
-  port,
+  port: port,
+  host: '0.0.0.0'
 });
