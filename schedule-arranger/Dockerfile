@@ -12,4 +12,4 @@ ENV TZ=Asia/Tokyo
 
 WORKDIR /app
 COPY . /app
-CMD ["sh", ]
+CMD ["sh", "run.sh"]
