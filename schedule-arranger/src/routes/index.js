@@ -45,7 +45,7 @@ app.get('/', async (c) => {
     })
   : [];
 schedules.forEach((schedule) => {
-  schedule.formattedUpdatedAt = dayjs(schedule.updatedAt).tz().formattedUpdatedAt = dayjs(schedule.updatedAt).tz().format('YYYY/MM/DD HH:mm');
+  schedule.formattedUpdatedAt = dayjs(schedule.updatedAt).tz().format('YYYY/MM/DD HH:mm');
 });
 
   return c.html(
