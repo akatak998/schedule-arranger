@@ -7,7 +7,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient({ log: ['query'] });
 const { z } = require('zod');
 const { zValidator } = require('@hono/zod-validtor');
-cosnt { HTTPException } = require('hono/http-exception');
+const { HTTPException } = require('hono/http-exception');
 
 const app = new Hono();
 
@@ -264,6 +264,58 @@ app.get('/:scheduleId', scheduleIdValidator, async (c) => {
     ),
   );
 });
+
+// 出欠状態の検証用バリデータ（0:欠席, 1:保留/疑問, 2:出席）
+const availabilityValidator = zValidator(
+  'json',
+  z.object({
+    availability: z.number().int().min(0).max(2),
+  }),
+  (result) => {
+    if (!result.success) {
+      throw new HTTPException(400, { message: '入力された情報が不十分または正しくありません' });
+    }
+  }
+);
+
+// 出欠更新 API エンドポイント
+app.post(
+  '/:scheduleId/users/:userId/candidates/:candidateId',
+  scheduleIdValidator,
+  availabilityValidator,
+  async (c) => {
+    const { user } = c.get('session') ?? {};
+    const { scheduleId, userId, candidateId } = c.req.valid('param');
+
+    // 自分の出欠データのみ更新可能にする
+    if (parseInt(user.id, 10) !== parseInt(userId, 10)) {
+      throw new HTTPException(403, { message: 'ユーザー識別子が一致しません' });
+    }
+
+    const { availability } = c.req.valid('json');
+
+    const data = {
+      userId: parseInt(userId, 10),
+      scheduleId,
+      candidateId: parseInt(candidateId, 10),
+      availability,
+    };
+
+    // Upsert (存在すれば更新、なければ作成)
+    await prisma.availability.upsert({
+      where: {
+        availabilityId: {
+          candidateId: data.candidateId,
+          userId: data.userId,
+        },
+      },
+      create: data,
+      update: data,
+    });
+
+    return c.json({ status: 'OK', availability });
+  }
+);
 
 function isMine(userId, schedule) {
   return schedule && parseInt(schedule.createdBy, 10) === parseInt(userId, 10);
