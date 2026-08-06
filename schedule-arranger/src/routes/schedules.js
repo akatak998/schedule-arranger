@@ -6,7 +6,7 @@ const { randomUUID } = require('node:crypto');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient({ log: ['query'] });
 const { z } = require('zod');
-const { zValidator } = require('@hono/zod-validtor');
+const { zValidator } = require('@hono/zod-validator');
 const { HTTPException } = require('hono/http-exception');
 
 const app = new Hono();
