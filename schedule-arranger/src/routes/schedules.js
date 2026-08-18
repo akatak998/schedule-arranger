@@ -307,7 +307,7 @@ app.post(
     // Upsert (存在すれば更新、なければ作成)
     await prisma.availability.upsert({
       where: {
-        availabilityId: {
+        candidateId_userId: { // availabilityIdをcandidateId_userIdに変更
           candidateId: data.candidateId,
           userId: data.userId,
         },
