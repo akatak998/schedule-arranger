@@ -285,7 +285,7 @@ app.post(
   availabilityValidator,
   async (c) => {
     const { user } = c.get('session') ?? {};
-    const { scheduleId, userId, candidateId } = c.req.valid('param');
+    const { scheduleId, userId, candidateId } = c.req.param();
 
     // 自分の出欠データのみ更新可能にする
     if (parseInt(user.id, 10) !== parseInt(userId, 10)) {
