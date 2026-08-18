@@ -288,8 +288,6 @@ app.post(
     const { user } = c.get('session') ?? {};
     const { scheduleId, userId, candidateId } = c.req.param();
     console.log('=== [2] 取得した値:', { userId, candidateId, scheduleId, sessionUserId: user?.id });
-    const { user } = c.get('session') ?? {};
-    const { scheduleId, userId, candidateId } = c.req.param();
     // ここまで
 
     // 自分の出欠データのみ更新可能にする
