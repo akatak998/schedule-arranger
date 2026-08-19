@@ -19,6 +19,7 @@ function scheduleTable(schedules) {
       <tr>
         <th>予定名</th>
         <th>更新日時</th>
+        <th>メモ</th>
       </tr>
       ${schedules.map(
         (schedule) => html`
@@ -29,6 +30,10 @@ function scheduleTable(schedules) {
               </a>
             </td>
             <td>${schedule.formattedUpdatedAt}</td>
+            <td>
+            <a href="/schedules/${schedule.memo}">
+              ${schedule.scheduleMemo
+            </td>
           </tr>
         `,
       )}
