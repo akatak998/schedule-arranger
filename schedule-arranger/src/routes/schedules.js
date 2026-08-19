@@ -77,7 +77,7 @@ app.get('/new', (c) => {
             </label>
             <textarea name="candidates" class="form-control"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit">予定をつくる</button>
+          <button class="btn btn-primary" type="submit">予定を作る</button>
         </form>
       `,
     ),
