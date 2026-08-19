@@ -31,8 +31,9 @@ function scheduleTable(schedules) {
             </td>
             <td>${schedule.formattedUpdatedAt}</td>
             <td>
-            <a href="/schedules/${schedule.scheduleId}">
+            <a>
               ${schedule.memo}
+              </a>
             </td>
           </tr>
         `,
