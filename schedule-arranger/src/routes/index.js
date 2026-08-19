@@ -35,7 +35,7 @@ function scheduleTable(schedules) {
             <td>
               ${schedule.formattedUpdatedAt}
             </td>
-            <td style="white-space: pre-wrap; word-break: break-word;">
+            <td style="max-width: 300px; overfrow: hidden; text-overflow: ellipsis; white-space: nowrap;">
               ${schedule.memo}
             </td>
           </tr>
