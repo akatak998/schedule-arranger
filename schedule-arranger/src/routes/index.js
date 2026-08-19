@@ -15,12 +15,15 @@ const app = new Hono();
 
 function scheduleTable(schedules) {
   return html`
-    <table class="table">
+    <table class="table" style="table-layout: fixed; width: 100%;">
+     <theed>
       <tr>
-        <th class="text-nowrap>予定名</th>
-        <th class="text-nowrap>更新日時</th>
-        <th>メモ</th>
+        <th style="width: 25%;">予定名</th>
+        <th style="width: 20%;">更新日時</th>
+        <th style="width: 55%;">メモ</th>
       </tr>
+    </theed>
+    <tbody>
       ${schedules.map(
         (schedule) => html`
           <tr>
@@ -38,6 +41,7 @@ function scheduleTable(schedules) {
           </tr>
         `,
       )}
+      </tbody>
     </table>
   `;
 }
