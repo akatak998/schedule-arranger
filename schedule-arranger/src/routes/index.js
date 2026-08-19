@@ -17,23 +17,23 @@ function scheduleTable(schedules) {
   return html`
     <table class="table">
       <tr>
-        <th>予定名</th>
-        <th>更新日時</th>
+        <th class="text-nowrap>予定名</th>
+        <th class="text-nowrap>更新日時</th>
         <th>メモ</th>
       </tr>
       ${schedules.map(
         (schedule) => html`
           <tr>
-            <td>
+            <td class="text-nowrap">
               <a href="/schedules/${schedule.scheduleId}">
                 ${schedule.scheduleName}
               </a>
             </td>
-            <td>${schedule.formattedUpdatedAt}</td>
-            <td>
-            <a>
+            <td class="text-nowrap">
+              ${schedule.formattedUpdatedAt}
+            </td>
+            <td class="text-break>
               ${schedule.memo}
-              </a>
             </td>
           </tr>
         `,
