@@ -32,7 +32,7 @@ function scheduleTable(schedules) {
             <td>${schedule.formattedUpdatedAt}</td>
             <td>
             <a href="/schedules/${schedule.memo}">
-              ${schedule.scheduleMemo
+              ${schedule.scheduleMemo}
             </td>
           </tr>
         `,
