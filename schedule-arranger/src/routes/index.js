@@ -15,27 +15,27 @@ const app = new Hono();
 
 function scheduleTable(schedules) {
   return html`
-    <table class="table" style="table-layout: fixed; width: 100%;">
+    <table class="table">
      <theed>
       <tr>
-        <th style="width: 25%;">予定名</th>
-        <th style="width: 20%;">更新日時</th>
-        <th style="width: 55%;">メモ</th>
+        <th style="min-width: 180px;">予定名</th>
+        <th style="min-width: 160px;">更新日時</th>
+        <th>メモ</th>
       </tr>
     </theed>
     <tbody>
       ${schedules.map(
         (schedule) => html`
           <tr>
-            <td class="text-nowrap">
+            <td>
               <a href="/schedules/${schedule.scheduleId}">
                 ${schedule.scheduleName}
               </a>
             </td>
-            <td class="text-nowrap">
+            <td>
               ${schedule.formattedUpdatedAt}
             </td>
-            <td class="text-break>
+            <td style="white-space: pre-wrap; word-break: break-word;">
               ${schedule.memo}
             </td>
           </tr>
